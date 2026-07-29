@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#e9e1d3" />
+  <title>🎀Happy Birthday🎀</title>
+
+  <link rel="stylesheet" href="./css/style.css" />
+</head>
+<body class="cover-page">
+  <main class="mobile-shell cover-shell" id="coverPage">
+
+    <section class="cover-canvas" aria-label="생일 축하 메인 화면">
+
+      <!-- 좌측 상단 은색 하트 풍선 PNG -->
+      <img
+        class="decor decor-heart-balloon float-slow"
+        src="./assets/images/silver-heart.png"
+        alt=""
+        draggable="false"
+      />
+
+      <!-- 우측 상단 미러볼 PNG -->
+      <img
+        class="decor decor-disco-ball sway-slow"
+        src="./assets/images/disco-ball.png"
+        alt=""
+        draggable="false"
+      />
+
+      <!-- 금색 별 PNG 2개 -->
+      <img
+        class="decor decor-star decor-star-left twinkle"
+        src="./assets/images/gold-star.png"
+        alt=""
+        draggable="false"
+      />
+      <img
+        class="decor decor-star decor-star-right twinkle delay-1"
+        src="./assets/images/gold-star.png"
+        alt=""
+        draggable="false"
+      />
+
+      <!-- 제목 이미지 -->
+      <img
+        class="birthday-title pop-in"
+        src="./assets/images/happy-birthday-title.png"
+        alt="Happy Birthday"
+        draggable="false"
+      />
+
+      <!-- 반짝이/크롬 별 PNG -->
+      <img
+        class="decor decor-sparkle decor-sparkle-left float-medium"
+        src="./assets/images/chrome-sparkle.png"
+        alt=""
+        draggable="false"
+      />
+      <img
+        class="decor decor-sparkle decor-sparkle-small float-medium delay-2"
+        src="./assets/images/chrome-sparkle.png"
+        alt=""
+        draggable="false"
+      />
+
+      <!-- 카메라 본체 이미지 -->
+      <div class="camera-wrap pop-in delay-1" aria-label="생일자 사진이 들어간 카메라">
+        <!-- 생일자 사진 -->
+        <div class="camera-photo">
+          <img
+            src="./assets/images/birthday-person.jpg"
+            alt="생일자 사진"
+            draggable="false"
+          />
+        </div>
+
+        <img
+          class="camera-frame"
+          src="./assets/images/camera-frame.png"
+          alt=""
+          draggable="false"
+        />
+      </div>
+
+      <!-- 핑크 리본 PNG -->
+      <img
+        class="decor decor-ribbon sway-medium"
+        src="./assets/images/pink-ribbon.png"
+        alt=""
+        draggable="false"
+      />
+
+      <!-- 생일 케이크 PNG -->
+      <img
+        class="decor decor-cake bob-small"
+        src="./assets/images/birthday-cake.png"
+        alt=""
+        draggable="false"
+      />
+
+      <!-- 고양이 -->
+      <img
+        class="birthday-cat"
+        src="./assets/images/birthday-cat.png"
+        alt="생일 모자를 쓴 고양이"
+        draggable="false"
+      />
+
+      <!-- 좋아하는 사람 PNG -->
+      <img
+        class="decor decor-flowers sway-slow delay-1"
+        src="./assets/images/flowers.png"
+        alt=""
+        draggable="false"
+      />
+
+
+      <p class="tap-guide">화면을 눌러 축하 메시지 보기</p>
+    </section>
+  </main>
+
+  <!-- 음악 켜기/끄기 버튼 -->
+  <button
+    class="sound-button"
+    id="soundButton"
+    type="button"
+    aria-label="음악 켜기"
+    aria-pressed="false"
+  >
+    <span class="sound-icon" aria-hidden="true">🔇</span>
+  </button>
+
+  <!-- 5곡 순차 반복 재생용 오디오 -->
+  <audio id="bgMusic" preload="metadata"></audio>
+
+  <script src="./js/music.js"></script>
+  <script src="./js/index.js"></script>
+</body>
+</html>

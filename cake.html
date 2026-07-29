@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#f7dfe7" />
+  <title>Birthday Message</title>
+
+  <link rel="stylesheet" href="./css/style.css" />
+</head>
+<body class="message-page">
+  <main class="mobile-shell message-shell">
+    <header class="message-hero">
+      <!-- 이미지 소스 추천: 작은 별/하트/리본 PNG -->
+      <img
+        class="hero-sticker hero-sticker-left float-slow"
+        src="./assets/images/gold-star.png"
+        alt=""
+      />
+      <img
+        class="hero-sticker hero-sticker-right sway-medium"
+        src="./assets/images/pink-ribbon.png"
+        alt=""
+      />
+
+      <p class="eyebrow">TODAY IS YOUR DAY</p>
+      <h1>생일을 진심으로<br />축하해!</h1>
+      <p class="hero-copy">
+        아래로 천천히 내려보면<br />
+        준비한 사진과 메시지가 이어져요.
+      </p>
+
+      <div class="scroll-indicator" aria-hidden="true">
+        <span></span>
+      </div>
+    </header>
+
+    <section class="diary-section">
+      <div class="section-label">01 · TODAY'S PHOTO</div>
+
+      <article class="polaroid-card reveal">
+        <!-- 이미지 소스 추천: 오늘의 대표 사진 -->
+        <div class="photo-slot">
+          <img
+            src="./assets/images/photo-01.jpg"
+            alt="함께한 추억 사진"
+          />
+        </div>
+        <p>오늘의 주인공 ✨</p>
+      </article>
+    </section>
+
+    <section class="diary-section">
+      <div class="section-label">02 · LETTER</div>
+
+      <article class="letter-card reveal">
+        <p class="letter-date">2026. 00. 00</p>
+        <h2>To. 생일자 이름</h2>
+        <p>
+          생일 진짜 축하해!<br />
+          올해도 좋은 일, 웃을 일 가득하고<br />
+          하고 싶은 일은 하나씩 전부 이루길 바라.
+        </p>
+        <p>
+          같이 보낸 시간들이 오래오래 좋은 기억으로 남았으면 좋겠어.
+          앞으로도 맛있는 거 많이 먹고 재미있는 추억 많이 만들자!
+        </p>
+        <p class="letter-sign">From. 보내는 사람</p>
+      </article>
+    </section>
+
+    <section class="diary-section">
+      <div class="section-label">03 · OUR MOMENTS</div>
+
+      <div class="photo-grid">
+        <!-- 이미지 소스 추천: 함께 찍은 세로 사진 -->
+        <figure class="scrap-photo rotate-left reveal">
+          <img src="./assets/images/photo-02.jpg" alt="추억 사진 1" />
+          <figcaption>좋았던 날</figcaption>
+        </figure>
+
+        <!-- 이미지 소스 추천: 함께 찍은 정사각형 사진 -->
+        <figure class="scrap-photo rotate-right reveal">
+          <img src="./assets/images/photo-03.jpg" alt="추억 사진 2" />
+          <figcaption>웃음 가득</figcaption>
+        </figure>
+
+        <!-- 이미지 소스 추천: 여행 또는 일상 사진 -->
+        <figure class="scrap-photo rotate-left reveal">
+          <img src="./assets/images/photo-04.jpg" alt="추억 사진 3" />
+          <figcaption>우리의 기록</figcaption>
+        </figure>
+
+        <!-- 이미지 소스 추천: 마지막 대표 사진 -->
+        <figure class="scrap-photo rotate-right reveal">
+          <img src="./assets/images/photo-05.jpg" alt="추억 사진 4" />
+          <figcaption>앞으로도 함께</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="diary-section">
+      <div class="section-label">04 · WISH COUPONS</div>
+
+      <div class="coupon-list">
+        <article class="coupon reveal">
+          <span>COUPON 01</span>
+          <strong>맛있는 밥 사주기</strong>
+          <small>유효기간 · 평생</small>
+        </article>
+
+        <article class="coupon reveal">
+          <span>COUPON 02</span>
+          <strong>힘들 때 무조건 편들기</strong>
+          <small>횟수 제한 없음</small>
+        </article>
+
+        <article class="coupon reveal">
+          <span>COUPON 03</span>
+          <strong>같이 놀러 가기</strong>
+          <small>날짜 협의 가능</small>
+        </article>
+      </div>
+    </section>
+
+    <section class="cake-section">
+      <!-- 이미지 소스 추천: 큰 생일 케이크 PNG -->
+      <img
+        class="final-cake reveal"
+        src="./assets/images/birthday-cake.png"
+        alt="생일 케이크"
+      />
+
+      <h2 class="reveal">HAPPY BIRTHDAY!</h2>
+      <p class="reveal">
+        오늘 하루 누구보다 행복하고,<br />
+        오래 기억에 남는 생일이 되길 바라.
+      </p>
+
+      <a class="home-button reveal" href="./index.html">처음으로 돌아가기</a>
+    </section>
+  </main>
+
+  <button
+    class="top-button"
+    id="topButton"
+    type="button"
+    aria-label="맨 위로 이동"
+  >
+    ↑
+  </button>
+
+  <button
+    class="sound-button sound-button-message"
+    id="soundButton"
+    type="button"
+    aria-label="음악 켜기"
+    aria-pressed="false"
+  >
+    <span class="sound-icon" aria-hidden="true">🔇</span>
+  </button>
+
+  <audio id="bgMusic" preload="metadata"></audio>
+
+  <script src="./js/music.js"></script>
+  <script src="./js/cake.js"></script>
+</body>
+</html>
