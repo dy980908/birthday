@@ -3,152 +3,180 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <meta name="theme-color" content="#f7dfe7" />
-  <title>Birthday Message</title>
+  <meta name="theme-color" content="#f6eee3" />
+  <title>🎀Birthday Message🎀</title>
 
+  <!-- index 전용 공통 스타일 -->
   <link rel="stylesheet" href="./css/style.css" />
+  <!-- cake 전용 스타일: 반드시 style.css 다음에 연결 -->
+  <link rel="stylesheet" href="./css/cake.css" />
 </head>
-<body class="message-page">
-  <main class="mobile-shell message-shell">
-    <header class="message-hero">
-      <!-- 이미지 소스 추천: 작은 별/하트/리본 PNG -->
-      <img
-        class="hero-sticker hero-sticker-left float-slow"
-        src="./assets/images/gold-star.png"
-        alt=""
-      />
-      <img
-        class="hero-sticker hero-sticker-right sway-medium"
-        src="./assets/images/pink-ribbon.png"
-        alt=""
-      />
+<body class="cake-page is-locked">
+  <main class="mobile-shell cake-shell">
 
-      <p class="eyebrow">TODAY IS YOUR DAY</p>
-      <h1>생일을 진심으로<br />축하해!</h1>
-      <p class="hero-copy">
-        아래로 천천히 내려보면<br />
-        준비한 사진과 메시지가 이어져요.
-      </p>
+    <!-- SECTION 1 : 28번 케이크 터치 -->
+    <section class="cake-scene scene-one" id="section1" aria-labelledby="sceneOneTitle">
+      <img class="scene-bg" src="./assets/images/cake-section-01-bg.jpg" alt="" draggable="false" />
 
-      <div class="scroll-indicator" aria-hidden="true">
-        <span></span>
-      </div>
-    </header>
+      <div class="scene-one-content">
+        <h1 id="sceneOneTitle" class="sr-only">생일 축하 케이크</h1>
 
-    <section class="diary-section">
-      <div class="section-label">01 · TODAY'S PHOTO</div>
+        <p class="tap-count-copy">
+          케이크를 나이만큼 눌러줘!
+          <strong><span id="tapCount">0</span> / 28</strong>
+        </p>
 
-      <article class="polaroid-card reveal">
-        <!-- 이미지 소스 추천: 오늘의 대표 사진 -->
-        <div class="photo-slot">
+        <button class="cake-tap-button" id="cakeTapButton" type="button" aria-label="생일 케이크 누르기">
           <img
-            src="./assets/images/photo-01.jpg"
-            alt="함께한 추억 사진"
+            id="birthdayCake"
+            class="birthday-cake"
+            src="./assets/images/birthday-cake-main.png"
+            alt="생일 케이크"
+            draggable="false"
           />
+          <img
+            id="congratulationsImage"
+            class="congratulations-image"
+            src="./assets/images/congratulations.png"
+            alt="축하합니다"
+            draggable="false"
+          />
+          <span class="tap-burst" id="tapBurst" aria-hidden="true"></span>
+        </button>
+      </div>
+
+      <div class="party-animals" aria-hidden="true">
+        <img class="party-animal animal-hamster-cake" src="./assets/images/hamster-cupcake.png" alt="" draggable="false" />
+        <img class="party-animal animal-puppies" src="./assets/images/two-puppies.png" alt="" draggable="false" />
+        <img class="party-animal animal-cat" src="./assets/images/sunglasses-cat.png" alt="" draggable="false" />
+        <img class="party-animal animal-small-hamster" src="./assets/images/small-hamster.png" alt="" draggable="false" />
+        <img class="party-animal animal-shiba" src="./assets/images/shiba-party.png" alt="" draggable="false" />
+      </div>
+
+      <p class="unlock-guide" id="unlockGuide" aria-live="polite">세봉의 생일 축하한다봉</p>
+    </section>
+
+    <div class="locked-content" id="lockedContent" aria-hidden="true">
+      <!-- SECTION 2 : 앨범 -->
+      <section class="cake-scene scene-two gated-section" id="section2" aria-labelledby="sceneTwoTitle">
+        <img class="scene-bg" src="./assets/images/cake-section-02-bg.jpg" alt="" draggable="false" />
+        <img class="scene-decor scene-two-newspaper" src="./assets/images/newspaper-corner.png" alt="" draggable="false" />
+        <img class="scene-decor scene-two-lp float-soft" src="./assets/images/lp-record.png" alt="" draggable="false" />
+        <img class="scene-decor scene-two-title pop-soft" src="./assets/images/happy-birthday-collage-title.png" alt="Happy Birthday" draggable="false" />
+        <img class="scene-decor scene-two-cherry bob-soft" src="./assets/images/cherry-heart-paper.png" alt="" draggable="false" />
+        <img class="scene-decor scene-two-cake sway-soft" src="./assets/images/white-ribbon-cake.png" alt="" draggable="false" />
+
+        <h2 id="sceneTwoTitle" class="sr-only">세봉 앨범</h2>
+
+        <div class="film-album" id="filmAlbum">
+          <button class="film-slot" type="button" data-photo="./assets/images/memory-photo-01.jpg" aria-label="첫 번째 사진 열기">
+            <img alt="추억 사진 1" />
+            <span>TOUCH</span>
+          </button>
+          <button class="film-slot" type="button" data-photo="./assets/images/memory-photo-02.jpg" aria-label="두 번째 사진 열기" disabled>
+            <img alt="추억 사진 2" />
+            <span>TOUCH</span>
+          </button>
+          <button class="film-slot" type="button" data-photo="./assets/images/memory-photo-03.jpg" aria-label="세 번째 사진 열기" disabled>
+            <img alt="추억 사진 3" />
+            <span>TOUCH</span>
+          </button>
+          <button class="film-slot" type="button" data-photo="./assets/images/memory-photo-04.jpg" aria-label="네 번째 사진 열기" disabled>
+            <img alt="추억 사진 4" />
+            <span>TOUCH</span>
+          </button>
         </div>
-        <p>오늘의 주인공 ✨</p>
-      </article>
-    </section>
+      </section>
 
-    <section class="diary-section">
-      <div class="section-label">02 · LETTER</div>
+      <!-- SECTION 3 : 편지 -->
+      <section class="cake-scene scene-three gated-section letter-gate" id="section3" aria-labelledby="sceneThreeTitle">
+        <img class="scene-bg" src="./assets/images/cake-section-03-bg.jpg" alt="" draggable="false" />
 
-      <article class="letter-card reveal">
-        <p class="letter-date">2026. 00. 00</p>
-        <h2>To. 생일자 이름</h2>
-        <p>
-          생일 진짜 축하해!<br />
-          올해도 좋은 일, 웃을 일 가득하고<br />
-          하고 싶은 일은 하나씩 전부 이루길 바라.
-        </p>
-        <p>
-          같이 보낸 시간들이 오래오래 좋은 기억으로 남았으면 좋겠어.
-          앞으로도 맛있는 거 많이 먹고 재미있는 추억 많이 만들자!
-        </p>
-        <p class="letter-sign">From. 보내는 사람</p>
-      </article>
-    </section>
+        <img class="scene-decor scene-three-hat float-soft" src="./assets/images/pink-party-hat.png" alt="" draggable="false" />
+        <img class="scene-decor scene-three-title" src="./assets/images/happy-birthday-title.png" alt="Happy Birthday" draggable="false" />
+        <img class="scene-decor scene-three-cat bob-soft" src="./assets/images/ribbon-cat.png" alt="" draggable="false" />
+        <img class="scene-decor scene-three-star-one twinkle-soft" src="./assets/images/silver-star.png" alt="" draggable="false" />
+        <img class="scene-decor scene-three-star-two twinkle-soft delay-small" src="./assets/images/silver-star-small.png" alt="" draggable="false" />
+        <img class="scene-decor scene-three-cupcake sway-soft" src="./assets/images/cupcake-candle.png" alt="" draggable="false" />
+        <img class="scene-decor scene-three-hamster bob-soft" src="./assets/images/hamster-cupcake.png" alt="" draggable="false" />
+        <img class="scene-decor scene-three-gifts float-soft" src="./assets/images/gift-box-set.png" alt="" draggable="false" />
+        <img class="scene-decor scene-three-fairy sway-soft" src="./assets/images/fairy-hamster.png" alt="" draggable="false" />
 
-    <section class="diary-section">
-      <div class="section-label">03 · OUR MOMENTS</div>
+        <h2 id="sceneThreeTitle" class="sr-only">생일 편지</h2>
 
-      <div class="photo-grid">
-        <!-- 이미지 소스 추천: 함께 찍은 세로 사진 -->
-        <figure class="scrap-photo rotate-left reveal">
-          <img src="./assets/images/photo-02.jpg" alt="추억 사진 1" />
-          <figcaption>좋았던 날</figcaption>
-        </figure>
-
-        <!-- 이미지 소스 추천: 함께 찍은 정사각형 사진 -->
-        <figure class="scrap-photo rotate-right reveal">
-          <img src="./assets/images/photo-03.jpg" alt="추억 사진 2" />
-          <figcaption>웃음 가득</figcaption>
-        </figure>
-
-        <!-- 이미지 소스 추천: 여행 또는 일상 사진 -->
-        <figure class="scrap-photo rotate-left reveal">
-          <img src="./assets/images/photo-04.jpg" alt="추억 사진 3" />
-          <figcaption>우리의 기록</figcaption>
-        </figure>
-
-        <!-- 이미지 소스 추천: 마지막 대표 사진 -->
-        <figure class="scrap-photo rotate-right reveal">
-          <img src="./assets/images/photo-05.jpg" alt="추억 사진 4" />
-          <figcaption>앞으로도 함께</figcaption>
-        </figure>
-      </div>
-    </section>
-
-    <section class="diary-section">
-      <div class="section-label">04 · WISH COUPONS</div>
-
-      <div class="coupon-list">
-        <article class="coupon reveal">
-          <span>COUPON 01</span>
-          <strong>맛있는 밥 사주기</strong>
-          <small>유효기간 · 평생</small>
+        <article class="pink-letter" id="birthdayLetter">
+          <p class="handwrite-line letter-kicker">사랑둥이 세진이에게</p>
+          <p class="handwrite-line">세진이의 28번째 생일을 축하합니다!!!</p>
+          <p class="handwrite-line">시간 진짜 빠르다 그치?</p>
+          <p class="handwrite-line">그동안 많이 싸우기도 하고, 웃고 떠들면서</p>
+          <p class="handwrite-line">즐거웠던 기억도 정말 많다 그치?!</p>
+          <p class="handwrite-line">그만큼 서로 더 잘 알게 되고 가까워진 것 같아</p>
+          <p class="handwrite-line">오늘 생일 진심으로 축하해 🎉</p>
+          <p class="handwrite-line">그리고 앞으로도 매년, 아니 평생</p>
+          <p class="handwrite-line">내가 계속 옆에서 축하해줄게 >ㅇ<</p>
+          <p class="handwrite-line">이번엔 조금 색다르게 축하해주고 싶어서</p>
+          <p class="handwrite-line">세진이만을 위한 생일 홈페이지 제작해봤어 ㅎㅎ</p>
+          <p class="handwrite-line">항상 고맙고 앞으로도 지금처럼 같이 잘 지내보자</p>
+          <p class="handwrite-line">사랑해 ❤️</p>
+          <p class="handwrite-line letter-date">2026. 07. 31</p>
+          <p class="handwrite-line letter-sign">귀염둥이 다봉이가</p>
         </article>
 
-        <article class="coupon reveal">
-          <span>COUPON 02</span>
-          <strong>힘들 때 무조건 편들기</strong>
-          <small>횟수 제한 없음</small>
-        </article>
+        <p class="letter-progress" id="letterProgress" aria-live="polite">편지를 읽고 있어요…</p>
+      </section>
 
-        <article class="coupon reveal">
-          <span>COUPON 03</span>
-          <strong>같이 놀러 가기</strong>
-          <small>날짜 협의 가능</small>
-        </article>
-      </div>
-    </section>
+      <!-- SECTION 4 : 쿠폰 -->
+      <section class="cake-scene scene-four gated-section" id="section4" aria-labelledby="sceneFourTitle">
+        <img class="scene-bg" src="./assets/images/cake-section-04-bg.jpg" alt="" draggable="false" />
+        <img class="scene-decor scene-four-ribbon sway-soft" src="./assets/images/red-check-ribbon.png" alt="" draggable="false" />
+        <img class="scene-decor scene-four-cat bob-soft" src="./assets/images/whisker-cat.png" alt="" draggable="false" />
+        <img class="scene-decor scene-four-bubble" src="./assets/images/speech-bubble.png" alt="" draggable="false" />
+        <!-- <p class="speech-text">세진이를 위한 생일 쿠폰이야!</p> -->
+        <img class="scene-decor scene-four-star star-one twinkle-soft" src="./assets/images/gold-star.png" alt="" draggable="false" />
+        <img class="scene-decor scene-four-star star-two twinkle-soft delay-small" src="./assets/images/gold-star.png" alt="" draggable="false" />
+        <img class="scene-decor scene-four-star star-three twinkle-soft delay-medium" src="./assets/images/gold-star.png" alt="" draggable="false" />
 
-    <section class="cake-section">
-      <!-- 이미지 소스 추천: 큰 생일 케이크 PNG -->
-      <img
-        class="final-cake reveal"
-        src="./assets/images/birthday-cake.png"
-        alt="생일 케이크"
-      />
+        <h2 id="sceneFourTitle" class="sr-only">생일 쿠폰</h2>
 
-      <h2 class="reveal">HAPPY BIRTHDAY!</h2>
-      <p class="reveal">
-        오늘 하루 누구보다 행복하고,<br />
-        오래 기억에 남는 생일이 되길 바라.
-      </p>
+        <div class="coupon-image-list">
+          <button class="coupon-image-button" type="button" data-download="./assets/images/coupon-massage.png" data-name="massage-coupon.png">
+            <img src="./assets/images/coupon-massage.png" alt="마사지 10분 이용권" draggable="false" />
+          </button>
+          <button class="coupon-image-button" type="button" data-download="./assets/images/coupon-cleaning.png" data-name="cleaning-coupon.png">
+            <img src="./assets/images/coupon-cleaning.png" alt="청소 해주기 쿠폰" draggable="false" />
+          </button>
+        </div>
+      </section>
 
-      <a class="home-button reveal" href="./index.html">처음으로 돌아가기</a>
-    </section>
+      <!-- SECTION 5 : 엔딩 -->
+      <section class="cake-scene scene-five gated-section" id="section5" aria-labelledby="sceneFiveTitle">
+        <img class="scene-bg" src="./assets/images/cake-section-05-bg.jpg" alt="" draggable="false" />
+
+        <div class="final-content">
+          <img class="final-cake-image float-soft" src="./assets/images/birthday-cake.png" alt="생일 케이크" draggable="false" />
+          <h2 id="sceneFiveTitle">사랑하는 세진아 생일 축하해!!</h2>
+          <p>항상 행복하고<br />건강하고 예쁜 사랑하자</p>
+          <a class="home-button cake-home-button" href="./index.html">처음 화면으로 돌아가기</a>
+        </div>
+
+        <img class="final-animal final-hamster dance-left" src="./assets/images/beer-hamster.png" alt="" draggable="false" />
+        <img class="final-animal final-cat dance-right" src="./assets/images/sunglasses-cat.png" alt="" draggable="false" />
+      </section>
+    </div>
   </main>
 
-  <button
-    class="top-button"
-    id="topButton"
-    type="button"
-    aria-label="맨 위로 이동"
-  >
-    ↑
-  </button>
+  <!-- 쿠폰 저장 안내 팝업 -->
+  <div class="download-modal" id="downloadModal" hidden>
+    <div class="download-dialog" role="dialog" aria-modal="true" aria-labelledby="downloadTitle">
+      <button class="download-close" id="downloadClose" type="button" aria-label="닫기">×</button>
+      <img id="downloadPreview" src="" alt="선택한 쿠폰 미리보기" />
+      <h2 id="downloadTitle">쿠폰저장하기 </h2>
+      <p>다운로드 폴더 또는 사진 앱에서 확인 가능</p>
+      <a class="download-action" id="downloadAction" href="#" download>이미지 저장하기</a>
+    </div>
+  </div>
+
+  <button class="top-button" id="topButton" type="button" aria-label="맨 위로 이동">↑</button>
 
   <button
     class="sound-button sound-button-message"

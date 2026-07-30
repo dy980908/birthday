@@ -1,0 +1,532 @@
+@charset "UTF-8";
+
+/* cake.html 전용. 모든 선택자를 .cake-page 아래로 제한해 index 디자인에 영향 없음 */
+.cake-page {
+  overflow-x: hidden;
+  overscroll-behavior-y: none;
+  background: radial-gradient(circle at top, #eee8df 0, #d7d0c6 70%);
+}
+
+.cake-page .cake-shell {
+  position: relative;
+  background: #f6eee3;
+}
+
+.cake-page .sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.cake-page .cake-scene {
+  position: relative;
+  min-height: 100svh;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.cake-page .scene-bg {
+  position: absolute;
+  inset: 0;
+  z-index: -3;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+}
+
+.cake-page .scene-decor {
+  position: absolute;
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* 잠금 전에는 첫 화면만 노출 */
+.cake-page.is-locked {
+  height: 100svh;
+  overflow: hidden;
+}
+
+.cake-page .locked-content {
+  display: none;
+}
+
+.cake-page.is-unlocked .locked-content {
+  display: block;
+}
+
+/* ---------------- SECTION 1 ---------------- */
+.cake-page .scene-one {
+  display: grid;
+  place-items: center;
+  background: #f5f1e9;
+}
+
+.cake-page .scene-one-content {
+  position: relative;
+  z-index: 4;
+  width: 100%;
+  padding: 30svh 18px 26svh;
+  text-align: center;
+}
+
+.cake-page .tap-count-copy {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 7px;
+  margin: 0 0 20px;
+  padding: 10px 16px;
+  color: #493b35;
+  font-size: 14px;
+  font-weight: 800;
+  line-height: 1.35;
+  border: 1px solid rgba(77, 58, 50, 0.14);
+  border-radius: 20px;
+  background: rgba(255, 250, 242, 0.82);
+  box-shadow: 0 8px 22px rgba(67, 51, 43, 0.1);
+  backdrop-filter: blur(7px);
+}
+
+.cake-page .tap-count-copy strong {
+  color: #a2332f;
+  font-size: 18px;
+}
+
+.cake-page .cake-tap-button {
+  position: relative;
+  width: min(78vw, 330px);
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  touch-action: manipulation;
+}
+
+.cake-page .birthday-cake,
+.cake-page .congratulations-image {
+  width: 100%;
+  margin: 0 auto;
+  filter: drop-shadow(0 14px 18px rgba(72, 51, 38, 0.17));
+}
+
+.cake-page .birthday-cake.is-tapped {
+  animation: cake-tap 0.22s ease;
+}
+
+.cake-page .congratulations-image {
+  display: none;
+}
+
+.cake-page .cake-tap-button.is-complete .birthday-cake {
+  display: none;
+}
+
+.cake-page .cake-tap-button.is-complete .congratulations-image {
+  display: block;
+  animation: celebration-pop 0.72s cubic-bezier(.15,.82,.25,1.16) both;
+}
+
+.cake-page .tap-burst {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 12px;
+  height: 12px;
+  pointer-events: none;
+}
+
+.cake-page .tap-burst::before,
+.cake-page .tap-burst::after {
+  content: "";
+  position: absolute;
+  inset: -7px;
+  border: 4px dotted #e09b32;
+  border-radius: 50%;
+  opacity: 0;
+}
+
+.cake-page .tap-burst.is-active::before {
+  animation: burst-ring 0.55s ease-out;
+}
+
+.cake-page .tap-burst.is-active::after {
+  animation: burst-ring 0.55s 0.08s ease-out;
+}
+
+.cake-page .party-animals {
+  position: absolute;
+  inset: auto 0 0;
+  z-index: 5;
+  height: 35%;
+  pointer-events: none;
+}
+
+.cake-page .party-animal {
+  position: absolute;
+  bottom: -4%;
+  transform: translateY(120%);
+  filter: drop-shadow(0 8px 6px rgba(58, 44, 36, 0.14));
+  animation: animal-rise 1.05s cubic-bezier(.16,.8,.24,1.05) forwards;
+}
+
+.cake-page .animal-hamster-cake { left: -1%; width: 40%; animation-delay: 0.1s; }
+.cake-page .animal-puppies { left: 15%; width: 40%; animation-delay: 0.23s; }
+.cake-page .animal-cat { left: 49%; width: 50%; animation-delay: 0.36s; }
+.cake-page .animal-small-hamster { right: 1%; width: 20%; animation-delay: 0.49s; }
+.cake-page .animal-shiba { right: -1%; width: 40%; animation-delay: 0.62s; }
+
+.cake-page .unlock-guide {
+  position: absolute;
+  left: 50%;
+  bottom: max(12px, env(safe-area-inset-bottom));
+  z-index: 8;
+  margin: 0;
+  padding: 8px 13px;
+  transform: translateX(-50%);
+  color: #5d4e47;
+  font-size: 11px;
+  font-weight: 800;
+  white-space: nowrap;
+  border-radius: 999px;
+  background: rgba(255, 252, 246, 0.78);
+  backdrop-filter: blur(8px);
+}
+
+
+
+/* ---------------- SECTION 2 ---------------- */
+.cake-page .scene-two-newspaper { top: 0; right: 0; width: 94%; opacity: .92; }
+.cake-page .scene-two-lp { top: -1%; left: -7%; width: 35%; }
+.cake-page .scene-two-title { top: 15%; left: 13%; width: 80%; }
+.cake-page .scene-two-cherry { top: 50%; right: 2%; width: 50%; }
+.cake-page .scene-two-cake { right: -9%; bottom: -1%; width: 63%; }
+
+.cake-page .film-album {
+  position: absolute;
+  left: -2%;
+  top: 38%;
+  z-index: 4;
+  width: 49%;
+  padding: 22px 17px;
+  display: grid;
+  gap: 12px;
+  background: #181614;
+  box-shadow: 0 12px 22px rgba(20, 18, 16, 0.2);
+}
+
+.cake-page .film-album::before,
+.cake-page .film-album::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 12px;
+  background: repeating-linear-gradient(to bottom, #f7f3eb 0 13px, transparent 13px 27px);
+}
+
+.cake-page .film-album::before { left: 3px; }
+.cake-page .film-album::after { right: 3px; }
+
+.cake-page .film-slot {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  aspect-ratio: 1.4 / 1;
+  padding: 0;
+  overflow: hidden;
+  border: 3px solid #efebe2;
+  border-radius: 2px;
+  background: #fff;
+  cursor: pointer;
+}
+
+.cake-page .film-slot img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transform: translateY(-18px) scale(1.04);
+  transition: opacity .45s ease, transform .55s cubic-bezier(.18,.75,.25,1);
+}
+
+.cake-page .film-slot span {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  color: #a5a09a;
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: .15em;
+}
+
+.cake-page .film-slot.is-filled img { opacity: 1; transform: translateY(0) scale(1); }
+.cake-page .film-slot.is-filled span { display: none; }
+.cake-page .film-slot:disabled { cursor: default; }
+
+
+
+/* ---------------- SECTION 3 ---------------- */
+.cake-page .scene-three-hat { top: 3%; left: 3%; width: 22%; }
+.cake-page .scene-three-title { top: 10%; left: 15%; width: 68%; }
+.cake-page .scene-three-cat { top: 1%; right: 2%; width: 25%; }
+.cake-page .scene-three-star-one { top: 38%; left: -4%; width: 20%; }
+.cake-page .scene-three-star-two { top: 50%; left: 4%; width: 15%; }
+.cake-page .scene-three-cupcake { top: 48%; right: -6%; width: 24%; }
+.cake-page .scene-three-hamster { bottom: 0; left: -5%; width: 45%; }
+.cake-page .scene-three-gifts { bottom: -1%; left: 48%; width: 33%; }
+.cake-page .scene-three-fairy { bottom: -2%; right: -5%; width: 31%; }
+
+.cake-page .pink-letter {
+  position: relative;
+  width: 75%;
+  min-height: 54%;
+  margin: 19svh auto 0;
+  padding: 48px 27px;
+  color: #633f47;
+  background: #f9dfe2;
+  box-shadow: 0 12px 24px rgba(82, 52, 54, 0.18);
+}
+
+.cake-page .pink-letter p {
+  margin: 0 0 17px;
+  font-family: "Nanum Pen Script", "Comic Sans MS", cursive;
+  font-size: 17px;
+  line-height: 1.05;
+}
+
+.cake-page .pink-letter .letter-kicker { font-weight: 800; }
+.cake-page .pink-letter .letter-date,
+.cake-page .pink-letter .letter-sign { text-align: right; }
+
+.cake-page .handwrite-line {
+  opacity: 0;
+  clip-path: inset(0 100% 0 0);
+}
+
+.cake-page .letter-gate.is-writing .handwrite-line {
+  animation: handwriting 1.05s steps(22, end) forwards;
+}
+
+.cake-page .letter-gate.is-complete .handwrite-line {
+  opacity: 1;
+  clip-path: inset(0 0 0 0);
+}
+
+/* .cake-page .letter-progress {
+  position: absolute;
+  left: 50%;
+  bottom: 16px;
+  z-index: 6;
+  margin: 0;
+  padding: 7px 12px;
+  transform: translateX(-50%);
+  color: #7c545d;
+  font-size: 11px;
+  font-weight: 800;
+  white-space: nowrap;
+  border-radius: 999px;
+  background: rgba(255, 248, 246, .78);
+} */
+
+
+
+/* ---------------- SECTION 4 ---------------- */
+.cake-page .scene-four-ribbon { top: -3%; right: -8%; width: 46%; }
+.cake-page .scene-four-cat { top: 6%; left: 1%; width: 30%; }
+.cake-page .scene-four-bubble { top: 3%; left: 30%; width: 35%; }
+.cake-page .speech-text {
+  position: absolute;
+  top: 7%;
+  left: 31%;
+  z-index: 3;
+  width: 34%;
+  margin: 0;
+  color: #7e5056;
+  font-size: 12px;
+  font-weight: 800;
+  line-height: 1.45;
+  text-align: center;
+}
+.cake-page .scene-four-star { width: 15%; }
+.cake-page .star-one { top: 22%; left: 3%; }
+.cake-page .star-two { top: 18%; left: 22%; width: 10%; }
+.cake-page .star-three { top: 45%; left: 8%; width: 11%; }
+
+.cake-page .coupon-image-list {
+  position: relative;
+  z-index: 4;
+  width: 72%;
+  margin: 22svh auto 0;
+  display: grid;
+  gap: 20px;
+}
+
+.cake-page .coupon-image-button {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  transition: transform .25s ease;
+}
+
+.cake-page .coupon-image-button:nth-child(odd) { transform: rotate(-2deg); }
+.cake-page .coupon-image-button:nth-child(even) { transform: rotate(2deg); }
+.cake-page .coupon-image-button:active { transform: scale(.97); }
+.cake-page .coupon-image-button img { width: 100%; filter: drop-shadow(0 10px 10px rgba(80, 46, 47, .13)); }
+
+
+
+
+/* ---------------- SECTION 5 ---------------- */
+.cake-page .scene-five { display: grid; place-items: center; }
+.cake-page .final-content {
+  position: relative;
+  z-index: 4;
+  width: 100%;
+  padding: 10svh 28px 27svh;
+  text-align: center;
+}
+
+.cake-page .final-cake-image {
+  width: 76%;
+  margin: 0 auto 28px;
+  filter: drop-shadow(0 17px 16px rgba(70, 47, 38, .16));
+}
+
+.cake-page .scene-five h2 {
+  margin: 0 0 14px;
+  color: #191513;
+  font-size: 31px;
+  letter-spacing: -.05em;
+}
+
+.cake-page .scene-five p { margin: 0; font-size: 15px; font-weight: 700; line-height: 1.75; }
+.cake-page .cake-home-button {
+  margin-top: 26px;
+  background: #a2332f;
+  color: #fff;              /* 글자 흰색 */
+  padding: 12px 24px;      /* 안쪽 여백 */
+  border-radius: 999px;    /* 완전 둥근 버튼 */
+  text-decoration: none;   /* 밑줄 제거 */
+  display: inline-block;   /* 버튼처럼 */
+  border: none;
+  cursor: pointer;
+}
+.cake-page .final-animal {
+  position: absolute;
+  z-index: 5;
+  bottom: -2%;
+  pointer-events: none;
+  filter: drop-shadow(0 8px 8px rgba(63, 47, 39, .13));
+}
+
+.cake-page .final-hamster { left: -4%; width: 42%; }
+.cake-page .final-cat { right: -5%; width: 46%; }
+
+/* ---------------- Modal ---------------- */
+.cake-page .download-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+  background: rgba(35, 27, 25, .55);
+  backdrop-filter: blur(5px);
+}
+
+.cake-page .download-modal[hidden] { display: none; }
+
+.cake-page .download-dialog {
+  position: relative;
+  width: min(100%, 340px);
+  padding: 24px;
+  text-align: center;
+  border-radius: 22px;
+  background: #fffaf4;
+  box-shadow: 0 24px 60px rgba(31, 23, 21, .25);
+}
+
+.cake-page .download-dialog img { width: 100%; max-height: 330px; object-fit: contain; }
+.cake-page .download-dialog h2 { margin: 18px 0 8px; font-size: 20px; }
+.cake-page .download-dialog p { margin: 0; color: #6e625e; font-size: 12px; line-height: 1.6; }
+.cake-page .download-action {
+  display: inline-flex;
+  margin-top: 18px;
+  padding: 12px 20px;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 800;
+  text-decoration: none;
+  border-radius: 999px;
+  background: #b94b63;
+}
+.cake-page .download-close {
+  position: absolute;
+  top: 8px;
+  right: 10px;
+  width: 36px;
+  height: 36px;
+  border: 0;
+  border-radius: 50%;
+  color: #6f5c57;
+  font-size: 25px;
+  background: transparent;
+  cursor: pointer;
+}
+
+/* 공통 미세 모션 */
+.cake-page .float-soft { animation: cake-float 4s ease-in-out infinite; }
+.cake-page .bob-soft { animation: cake-bob 3.1s ease-in-out infinite; }
+.cake-page .sway-soft { animation: cake-sway 3.8s ease-in-out infinite; transform-origin: center; }
+.cake-page .twinkle-soft { animation: cake-twinkle 2.5s ease-in-out infinite; }
+.cake-page .pop-soft { animation: soft-pop .75s cubic-bezier(.17,.82,.28,1.12) both; }
+.cake-page .delay-small { animation-delay: .35s; }
+.cake-page .delay-medium { animation-delay: .7s; }
+.cake-page .dance-left { animation: dance-left 1.15s ease-in-out infinite alternate; transform-origin: center bottom; }
+.cake-page .dance-right { animation: dance-right 1.15s .12s ease-in-out infinite alternate; transform-origin: center bottom; }
+
+@keyframes animal-rise {
+  0% { transform: translateY(120%) rotate(3deg); }
+  72% { transform: translateY(-4%) rotate(-1deg); }
+  100% { transform: translateY(0) rotate(0); }
+}
+@keyframes cake-tap { 0%,100%{transform:scale(1)} 50%{transform:scale(.94) rotate(-1deg)} }
+@keyframes celebration-pop { 0%{opacity:0;transform:scale(.55) rotate(-6deg)} 70%{opacity:1;transform:scale(1.08) rotate(2deg)} 100%{transform:scale(1) rotate(0)} }
+@keyframes burst-ring { 0%{opacity:.9;transform:translate(-50%,-50%) scale(.4)} 100%{opacity:0;transform:translate(-50%,-50%) scale(5)} }
+@keyframes handwriting { from{opacity:1;clip-path:inset(0 100% 0 0)} to{opacity:1;clip-path:inset(0 0 0 0)} }
+@keyframes cake-float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-7px)} }
+@keyframes cake-bob { 0%,100%{transform:translateY(0) rotate(-1deg)} 50%{transform:translateY(-5px) rotate(1deg)} }
+@keyframes cake-sway { 0%,100%{transform:rotate(-2deg)} 50%{transform:rotate(2deg)} }
+@keyframes cake-twinkle { 0%,100%{transform:scale(1);filter:brightness(1)} 50%{transform:scale(1.08);filter:brightness(1.15)} }
+@keyframes soft-pop { from{opacity:0;transform:translateY(-10px) scale(.9)} to{opacity:1;transform:translateY(0) scale(1)} }
+@keyframes dance-left { from{transform:rotate(-4deg) translateY(0)} to{transform:rotate(4deg) translateY(-5px)} }
+@keyframes dance-right { from{transform:rotate(4deg) translateY(0)} to{transform:rotate(-4deg) translateY(-5px)} }
+
+@media (min-width: 431px) {
+  .cake-page .cake-scene { min-height: calc(100svh - 44px); }
+  .cake-page.is-locked { height: 100svh; }
+}
+
+@media (max-width: 360px) {
+  .cake-page .pink-letter { width: 78%; padding: 30px 22px; }
+  .cake-page .pink-letter p { font-size: 15px; }
+  .cake-page .film-album { top: 39%; width: 51%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cake-page *,
+  .cake-page *::before,
+  .cake-page *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+  }
+}
