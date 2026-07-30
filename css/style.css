@@ -1,5 +1,9 @@
 @charset "UTF-8";
 
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css");
+@import url("https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap");
+
+
 :root {
   --paper: #ece5d8;
   --paper-light: #fffaf0;
@@ -525,5 +529,100 @@ a {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+  }
+}
+
+
+/* =========================================================
+   모바일 화면 높이·폰트 안정화
+   기존 디자인 값은 유지하고, 짧거나 긴 모바일 화면에서만 보정합니다.
+========================================================= */
+html,
+body {
+  width: 100%;
+  overflow-x: hidden;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body,
+button,
+input,
+textarea,
+select {
+  font-family: "Pretendard", "Noto Sans KR", "Apple SD Gothic Neo",
+    "Malgun Gothic", Arial, sans-serif;
+  font-synthesis: none;
+  word-break: keep-all;
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.cover-page {
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.cover-shell,
+.cover-canvas {
+  min-height: max(100svh, 680px);
+  min-height: max(100dvh, 680px);
+}
+
+/* 모바일 주소창 변화에도 화면이 갑자기 잘리지 않도록 실제 동적 높이를 사용 */
+@supports (height: 100dvh) {
+  .mobile-shell {
+    min-height: 100dvh;
+  }
+}
+
+/* 세로가 짧은 기기: 장식 간격만 축소해 원래 배치를 최대한 보존 */
+@media (max-height: 740px) and (max-width: 430px) {
+  .birthday-title {
+    top: 11%;
+    width: 74%;
+  }
+
+  .camera-wrap {
+    top: 29%;
+    width: 88%;
+  }
+
+  .decor-ribbon {
+    top: 29%;
+    width: 24%;
+  }
+
+  .decor-cake {
+    bottom: 2%;
+    width: 46%;
+  }
+
+  .birthday-cat {
+    width: 49%;
+    bottom: -9%;
+  }
+
+  .tap-guide {
+    bottom: max(10px, env(safe-area-inset-bottom));
+    padding: 7px 12px;
+    font-size: 11px;
+  }
+}
+
+/* 폭이 매우 좁은 기기에서 좌우 잘림 방지 */
+@media (max-width: 340px) {
+  body {
+    min-width: 0;
+  }
+
+  .sound-button,
+  .top-button {
+    right: max(10px, env(safe-area-inset-right));
+    width: 44px;
+    height: 44px;
   }
 }

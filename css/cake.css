@@ -530,3 +530,126 @@
     transition-duration: .01ms !important;
   }
 }
+
+
+/* =========================================================
+   모바일 화면 높이·간격 안정화
+========================================================= */
+.cake-page .cake-scene {
+  min-height: max(100svh, 720px);
+  min-height: max(100dvh, 720px);
+}
+
+.cake-page.is-locked {
+  height: 100svh;
+  height: 100dvh;
+}
+
+.cake-page .scene-one-content {
+  padding-top: clamp(150px, 27dvh, 250px);
+  padding-bottom: clamp(150px, 23dvh, 220px);
+}
+
+.cake-page .pink-letter p {
+  font-family: "Nanum Pen Script", "Apple SD Gothic Neo", cursive;
+  word-break: keep-all;
+  overflow-wrap: break-word;
+}
+
+.cake-page .pink-letter {
+  margin-top: clamp(130px, 19dvh, 190px);
+  padding: clamp(34px, 6dvh, 48px) clamp(20px, 6vw, 27px);
+}
+
+.cake-page .coupon-image-list {
+  margin-top: clamp(155px, 22dvh, 220px);
+}
+
+.cake-page .final-content {
+  padding-top: clamp(72px, 10dvh, 110px);
+  padding-bottom: clamp(180px, 27dvh, 280px);
+}
+
+/* 세로가 짧은 모바일에서 요소가 아래쪽에서 잘리지 않도록 재배치 */
+@media (max-height: 740px) and (max-width: 430px) {
+  .cake-page .cake-scene {
+    min-height: 720px;
+  }
+
+  .cake-page .scene-one-content {
+    padding-top: 170px;
+    padding-bottom: 165px;
+  }
+
+  .cake-page .cake-tap-button {
+    width: min(70vw, 290px);
+  }
+
+  .cake-page .party-animals {
+    height: 31%;
+  }
+
+  .cake-page .scene-two-title {
+    top: 12%;
+  }
+
+  .cake-page .film-album {
+    top: 34%;
+    width: 47%;
+    gap: 9px;
+    padding: 18px 15px;
+  }
+
+  .cake-page .scene-two-cherry {
+    top: 47%;
+  }
+
+  .cake-page .pink-letter {
+    width: 76%;
+    min-height: auto;
+    margin-top: 135px;
+    padding: 32px 23px;
+  }
+
+  .cake-page .pink-letter p {
+    margin-bottom: 13px;
+    font-size: 16px;
+    line-height: 1.08;
+  }
+
+  .cake-page .coupon-image-list {
+    width: 68%;
+    margin-top: 150px;
+    gap: 14px;
+  }
+
+  .cake-page .final-cake-image {
+    width: 68%;
+    margin-bottom: 20px;
+  }
+}
+
+/* 작은 폭에서 글자와 카드가 화면 밖으로 밀리지 않도록 보정 */
+@media (max-width: 340px) {
+  .cake-page .tap-count-copy {
+    font-size: 13px;
+  }
+
+  .cake-page .pink-letter {
+    width: 82%;
+    padding-inline: 18px;
+  }
+
+  .cake-page .pink-letter p {
+    font-size: 15px;
+  }
+
+  .cake-page .speech-text {
+    font-size: 10px;
+  }
+
+  .cake-page .download-dialog {
+    width: 100%;
+    padding: 20px 16px;
+  }
+}
